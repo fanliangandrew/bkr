@@ -101,6 +101,9 @@ android {
         versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+            moduleName "hello_world_jni"
+            ldLibs "log"
+            cFlags "-std=c99"
         }
     }
     splits {

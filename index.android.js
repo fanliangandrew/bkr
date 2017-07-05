@@ -36,6 +36,8 @@ async function hello() {
   try {
     var helloWorldStr = await HelloWorld.say();
     console.log(helloWorldStr);
+    var helloWorldStr1 = await HelloWorld.helloWorld();
+    console.log(helloWorldStr1)
   } catch (e) {
     console.error(e);
   }

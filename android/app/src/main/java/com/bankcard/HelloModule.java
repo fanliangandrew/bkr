@@ -1,6 +1,5 @@
 package com.bankcard;
 
-
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -19,6 +18,10 @@ public class HelloModule extends ReactContextBaseJavaModule {
         super(reactContext);
     }
 
+    static {
+        System.loadLibrary("hello_world_jni"); //this loads the library when the class is loaded
+    }
+
     @Override
     public boolean canOverrideExistingModule() {
         return true;
@@ -33,4 +36,16 @@ public class HelloModule extends ReactContextBaseJavaModule {
     public void say(Promise promise) {
         promise.resolve("Hello World!");
     }
+
+    @ReactMethod
+    public void helloWorld(Promise promise) {
+        try {
+            String hello = helloWorldJNI();
+            promise.resolve(hello);
+        } catch (Exception e) {
+            promise.reject("ERR", e);
+        }
+    }
+
+    public native String helloWorldJNI();
 }
